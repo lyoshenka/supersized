@@ -284,7 +284,7 @@
 
         //Shuffle slide order if needed
         if (self.options.random) {
-          for(var j, x, i = slides.length; i; j = parseInt(Math.random() * i), x = slides[--i], slides[i] = slides[j], slides[j] = x);	//Fisher-Yates shuffle algorithm (jsfromhell.com/array/shuffle)
+          for(var j, x, i = slides.length; i; j = parseInt(Math.random() * i), x = slides[--i], slides[i] = slides[j], slides[j] = x) {};	//Fisher-Yates shuffle algorithm (jsfromhell.com/array/shuffle)
         }
         else if (self.options.start_slide) {
           self.currentSlide = Math.max(self.options.start_slide, slides.length) - 1;
