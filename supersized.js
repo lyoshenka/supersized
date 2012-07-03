@@ -259,14 +259,14 @@
             }
             else
             {
-              self.loadSlides();
+              self.loadSlides(data.photoset ? data.photoset.owner : null);
             }
           }
         });
       },
 
 
-      loadSlides: function() {
+      loadSlides: function(setOwner) {
         var self = this,
             slides = [],
             imageLink = '';
@@ -277,7 +277,7 @@
             image : 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_' + self.options.image_size + '.jpg',
             thumb : 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_t.jpg',
             title : item.title ,
-            url   : 'http://www.flickr.com/photos/' + item.owner + '/' + item.id + '/'
+            url   : 'http://www.flickr.com/photos/' + (setOwner ? setOwner : item.owner) + '/' + item.id + '/'
           });
         });
         self.slides = slides;
@@ -427,7 +427,7 @@
               self.options.fit_landscape && ratio <= 1 ? resizeWidth(thisSlide) : resizeHeight(thisSlide);	//If landscapes are set to fit
             }
             else {
-              self.options.fit_portrait && ratio > 1 ? resizeHeight(thisSlide) : resizeWidth(thisSlide);		//If portraits are set to fit
+              self.options.fit_portrait && ratio >= 1 ? resizeHeight(thisSlide) : resizeWidth(thisSlide);		//If portraits are set to fit
             }
           }
 
